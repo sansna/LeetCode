@@ -14,19 +14,14 @@ int *findAll(char *s, char *word, int *returnSize) {
 	int len = strlen(s);
 	int lenw = strlen(word);
 	int *ret = SMALLOC(sizeof(int)*(len-lenw));
-	int i = 0, j = 0;
+	int i = 0;
 	int cur = 0;
-
 	for (; i < len - lenw + 1; i++) {
 		if (!strncmp(i+s, word, lenw))
 			ret[cur++] = i;
-
-
 	}
 	*returnSize = cur;
 	return ret;
-
-
 }
 
 int maxWords = 0;
@@ -48,11 +43,7 @@ OUT:
 			if (excl[j] == b[loc][i]) {
 				i++;
 				goto OUT;
-
-
 			}
-
-
 		}
 		//b[loc][i] is word not included yet.
 		excl[(*count)++] = b[loc][i];
@@ -61,15 +52,10 @@ OUT:
 		ret = recurFindNext(b,cur,loc+len[b[loc][i]],excl,count);
 		if (ret)
 			(*count)--;
-
-
 	}
 	if (*count == maxWords)
 		return 0;
-
 	return 1;
-
-
 }
 
 int* findSubstring(char* s, char** words, int wordsSize, int* returnSize) {
