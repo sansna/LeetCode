@@ -76,3 +76,23 @@ STATIC_INLINE int linklist_print(struct LinkList *l) {
     fprintf(stdout, "\b \n");
     return 0;
 }
+
+STATIC_INLINE int linklist_reverse(struct LinkList *l) {
+    struct LinkListNode *n,*m,*t;
+    if (!l->r) {
+        return 0;
+    }
+    n = l->r;
+    t = NULL;
+    while (n->next) {
+        m = n->next;
+        n->next = t;
+        t = n;
+        n = m;
+    }
+    if (!n->next) {
+        n->next = t;
+        l->r = n;
+    }
+    return 0;
+}
